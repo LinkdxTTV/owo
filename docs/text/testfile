@@ -5,7 +5,10 @@ Command: uwu
 BodyStart:
 this is an example body, it is full of characters that will later need to be a big string in the body. 123456789. This should be a single line I guess. I hope it will wrap later on.
 actually it can be multiple lines
+a
 BodyEnd:
+
+this should be ignored
 
 Notes:
 this is note 1
