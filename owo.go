@@ -16,7 +16,7 @@ func main() {
 	// fmt.Println(args)
 
 	if len(args) == 1 {
-		fmt.Println("owo: command line knowledge source")
+		fmt.Println("owo: command line knowledge source 5")
 		fmt.Println("--------------------------------")
 		fmt.Println("  owo about")
 		fmt.Println("  owo checkup")

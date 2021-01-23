@@ -12,6 +12,7 @@ const Update string = "update"
 
 func CmdUpdate(cfg *config.Config) error {
 
+	os.Setenv("GO111MODULE", "off")
 	updateCmd := exec.Command("go", "get", "-u", cfg.Git.RemoteURL)
 	updateCmd.Stdout = os.Stdout
 	updateCmd.Stderr = os.Stdout
