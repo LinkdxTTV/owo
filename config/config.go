@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"fmt"
 	"go/build"
 	"io/ioutil"
 	"os"
@@ -27,7 +26,7 @@ func ParseConfig() (*Config, error) {
 	}
 
 	gopath += "/src/github.com/LinkdxTTV/owo/config/config.json"
-	fmt.Println(gopath)
+	// fmt.Println(gopath)
 
 	f, err := os.Open(gopath)
 	if err != nil {

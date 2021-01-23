@@ -10,19 +10,21 @@ type Entry struct {
 }
 
 func (e Entry) Print() {
+	fmt.Println("-----------------------------")
 	fmt.Println(e.Title)
 	fmt.Println()
-	fmt.Println("  Command")
-	fmt.Println(e.Command)
+	fmt.Println("Command:")
+	fmt.Println("   ", e.Command)
 	fmt.Println()
 	for _, bodyLine := range e.Body {
 		fmt.Println(bodyLine)
 	}
 	fmt.Println()
-	fmt.Println("  Notes:")
+	fmt.Println("Notes:")
 	for _, note := range e.Notes {
-		fmt.Println(note)
+		fmt.Println("   ", note)
 	}
+	fmt.Println("-----------------------------")
 }
 
 type Folder struct {

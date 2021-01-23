@@ -57,15 +57,15 @@ var (
 
 func checkKeyword(line string) *string {
 	line += "      " // Casual hacky pad
-	if line[0:5] == title+":" {
+	if line[0:6] == title+":" {
 		return &title
-	} else if line[0:7] == command+":" {
+	} else if line[0:8] == command+":" {
 		return &command
-	} else if line[0:9] == bodystart+":" {
+	} else if line[0:10] == bodystart+":" {
 		return &bodystart
-	} else if line[0:7] == bodyend+":" {
+	} else if line[0:8] == bodyend+":" {
 		return &bodyend
-	} else if line[0:5] == notes+":" {
+	} else if line[0:6] == notes+":" {
 		return &notes
 	}
 	return nil

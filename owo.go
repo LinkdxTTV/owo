@@ -46,7 +46,6 @@ func main() {
 		}
 
 		gopath += "/src/github.com/LinkdxTTV/owo/docs/text/testfile"
-		fmt.Println(gopath)
 		entry, err := parse.ParseEntry(gopath)
 		if err != nil {
 			log.Fatal(err)
