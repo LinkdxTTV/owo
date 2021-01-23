@@ -14,6 +14,7 @@ const Checkup string = "checkup"
 func CheckForUpdate() error {
 	cfg, err := config.ParseConfig()
 	if err != nil {
+		fmt.Println("err parsing cfg")
 		return err
 	}
 
@@ -25,7 +26,7 @@ func CheckForUpdate() error {
 	if headSHA == cfg.Git.SHA {
 		fmt.Println("owo you're up to date :)")
 	} else {
-		fmt.Println("Please run owo update")
+		fmt.Println("Please run: owo update")
 	}
 	return nil
 }

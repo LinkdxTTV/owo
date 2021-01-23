@@ -32,7 +32,7 @@ func CmdUpdate() error {
 	}
 	cfg.Git.SHA = newSHA
 	config.UpdateConfigSHA(cfg)
-	fmt.Println("Update Succesful. You're ready to owo :)")
+	fmt.Println("Update Succesful. You are ready to owo :)")
 
 	return nil
 }

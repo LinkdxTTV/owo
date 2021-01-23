@@ -2,6 +2,8 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
+	"go/build"
 	"io/ioutil"
 	"os"
 )
@@ -17,7 +19,16 @@ type Config struct {
 
 // ParseConfig parses the config file
 func ParseConfig() (*Config, error) {
-	f, err := os.Open("./config/config.json")
+
+	gopath := os.Getenv("GOPATH")
+	if gopath == "" {
+		gopath = build.Default.GOPATH
+	}
+
+	gopath += "/src/github.com/LinkdxTTV/owo/config/config.json"
+	fmt.Println(gopath)
+
+	f, err := os.Open(gopath)
 	if err != nil {
 		return nil, err
 	}
