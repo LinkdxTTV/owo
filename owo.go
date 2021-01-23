@@ -12,7 +12,7 @@ func main() {
 	// fmt.Println(args)
 
 	if len(args) == 1 {
-		fmt.Println("welcome to owo 2")
+		fmt.Println("welcome to owo 3")
 		fmt.Println("--------------")
 		fmt.Println("try:")
 		fmt.Println("owo about")
