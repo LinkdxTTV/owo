@@ -48,7 +48,15 @@ func UpdateConfigSHA(cfg *Config) error {
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile("./config/config.json", byteJSON, 0644)
+
+	gopath := os.Getenv("GOPATH")
+	if gopath == "" {
+		gopath = build.Default.GOPATH
+	}
+
+	gopath += "/src/github.com/LinkdxTTV/owo/config/config.json"
+
+	err = ioutil.WriteFile(gopath, byteJSON, 0644)
 	if err != nil {
 		return err
 	}
