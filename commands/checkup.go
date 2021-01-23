@@ -3,8 +3,9 @@ package commands
 import (
 	"fmt"
 	"os/exec"
-	"owo/config"
 	"strings"
+
+	"github.com/LinkdxTTV/OwO/config"
 )
 
 const Checkup string = "checkup"
@@ -30,7 +31,7 @@ func CheckForUpdate() error {
 }
 
 func getNewestSHA(cfg *config.Config) (string, error) {
-	gitCmd := exec.Command("git", "ls-remote", cfg.Git.RemoteURL)
+	gitCmd := exec.Command("git", "ls-remote", cfg.Git.SSHURL)
 
 	outBytes, err := gitCmd.Output()
 	if err != nil {

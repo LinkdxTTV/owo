@@ -10,6 +10,7 @@ import (
 type Config struct {
 	Git struct {
 		RemoteURL string `json:"remoteURL"`
+		SSHURL    string `json:"SSHURL"`
 		SHA       string `json:"sha"`
 	} `json:"git"`
 }

@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"owo/config"
+
+	"github.com/LinkdxTTV/OwO/config"
 )
 
 const Update string = "update"
@@ -20,11 +21,13 @@ func CmdUpdate() error {
 
 	err = updateCmd.Run()
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 
 	newSHA, err := getNewestSHA(cfg)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	cfg.Git.SHA = newSHA

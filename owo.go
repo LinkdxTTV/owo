@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"owo/commands"
+
+	"github.com/LinkdxTTV/OwO/commands"
 )
 
 func main() {
@@ -11,7 +12,7 @@ func main() {
 	// fmt.Println(args)
 
 	if len(args) == 1 {
-		fmt.Println("welcome to owo")
+		fmt.Println("welcome to owo 2")
 		fmt.Println("--------------")
 		fmt.Println("try:")
 		fmt.Println("owo about")
