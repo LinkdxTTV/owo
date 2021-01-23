@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/LinkdxTTV/OwO/config"
+	"github.com/LinkdxTTV/owo/config"
 )
 
 const Update string = "update"

@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/LinkdxTTV/OwO/config"
+	"github.com/LinkdxTTV/owo/config"
 )
 
 const Checkup string = "checkup"

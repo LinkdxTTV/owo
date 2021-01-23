@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/LinkdxTTV/OwO/commands"
+	"github.com/LinkdxTTV/owo/commands"
 )
 
 func main() {
