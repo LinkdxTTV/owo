@@ -14,7 +14,7 @@ const Checkup string = "checkup"
 func CheckForUpdate() error {
 	cfg, err := config.ParseConfig()
 	if err != nil {
-		fmt.Println("err parsing cfg")
+		fmt.Println("error parsing cfg", err)
 		return err
 	}
 
@@ -39,11 +39,11 @@ func getNewestSHA(cfg *config.Config) (string, error) {
 		return "", err
 	}
 
-	// TODO maybe improve this parsing. I could use bash commands to do this but it might break functionality between OS'es..
+	// TODO maybe improve this parsing. I could use bash commands to do this but it might break functionality between OS'es.. string maniupalation always feels dirty though
 	var headSHA string
 	shaLines := strings.Split(string(outBytes), "\n")
 	for _, line := range shaLines {
-		if strings.Contains(line, "HEAD") {
+		if strings.Contains(line, "HEAD") { // should always be first
 			headSHA = strings.TrimSpace(strings.Split(line, "HEAD")[0])
 			break
 		}

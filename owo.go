@@ -12,12 +12,11 @@ func main() {
 	// fmt.Println(args)
 
 	if len(args) == 1 {
-		fmt.Println("welcome to owo 3")
-		fmt.Println("--------------")
-		fmt.Println("try:")
-		fmt.Println("owo about")
-		fmt.Println("owo checkup")
-		fmt.Println("owo update")
+		fmt.Println("owo: command line knowledge source")
+		fmt.Println("--------------------------------")
+		fmt.Println("  owo about")
+		fmt.Println("  owo checkup")
+		fmt.Println("  owo update")
 		os.Exit(0)
 	}
 
