@@ -11,14 +11,12 @@ import (
 const Checkup string = "checkup"
 
 // CheckForUpdate checks for updates
-func CheckForUpdate() error {
-	cfg, err := config.ParseConfig()
-	if err != nil {
-		fmt.Println("error parsing cfg", err)
-		return err
-	}
+func CheckForUpdate(cfg *config.Config) error {
 
 	headSHA, err := getNewestSHA(cfg)
+	if err != nil {
+		return err
+	}
 
 	fmt.Println("Current build: ", cfg.Git.SHA)
 	fmt.Println("Remote  build: ", headSHA)

@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"go/build"
+	"log"
 	"os"
 
 	"github.com/LinkdxTTV/owo/commands"
+	"github.com/LinkdxTTV/owo/config"
+	"github.com/LinkdxTTV/owo/parse"
 )
 
 func main() {
@@ -20,17 +24,34 @@ func main() {
 		os.Exit(0)
 	}
 
+	cfg, err := config.ParseConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	switch args[1] {
 	case commands.Checkup:
-		commands.CheckForUpdate()
+		commands.CheckForUpdate(cfg)
 	case commands.About:
 		commands.ShowAbout()
 	case commands.Update:
-		err := commands.CmdUpdate()
+		err := commands.CmdUpdate(cfg)
 		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
+			log.Fatal(err)
 		}
+	case "test":
+		gopath := os.Getenv("GOPATH")
+		if gopath == "" {
+			gopath = build.Default.GOPATH
+		}
+
+		gopath += "/src/github.com/LinkdxTTV/owo/docs/text/testfile"
+		fmt.Println(gopath)
+		entry, err := parse.ParseEntry(gopath)
+		if err != nil {
+			log.Fatal(err)
+		}
+		entry.Print()
 	}
 
 	return

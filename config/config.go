@@ -14,6 +14,7 @@ type Config struct {
 		RemoteURL string `json:"remoteURL"`
 		SSHURL    string `json:"SSHURL"`
 		SHA       string `json:"sha"`
+		LocalPath string `json:"localpath"`
 	} `json:"git"`
 }
 
@@ -43,7 +44,7 @@ func ParseConfig() (*Config, error) {
 	return &cfg, nil
 }
 
-func UpdateConfigSHA(cfg *Config) error {
+func UpdateConfig(cfg *Config) error {
 	byteJSON, err := json.Marshal(cfg)
 	if err != nil {
 		return err

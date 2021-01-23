@@ -1,0 +1,15 @@
+Title: weebshit
+
+Command: uwu
+
+BodyStart:
+this is an example body, it is full of characters that will later need to be a big string in the body. 123456789. This should be a single line I guess. I hope it will wrap later on.
+actually it can be multiple lines
+BodyEnd:
+
+Notes:
+this is note 1
+this is note 2
+this is note 3
+this is note 4
+this could be note 5 but noone knows. this is the end of the file tho and there is no line 13

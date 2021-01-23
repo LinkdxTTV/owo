@@ -10,16 +10,13 @@ import (
 
 const Update string = "update"
 
-func CmdUpdate() error {
-	cfg, err := config.ParseConfig()
-	if err != nil {
-		return err
-	}
+func CmdUpdate(cfg *config.Config) error {
+
 	updateCmd := exec.Command("go", "get", "-u", cfg.Git.RemoteURL)
 	updateCmd.Stdout = os.Stdout
 	updateCmd.Stderr = os.Stdout
 
-	err = updateCmd.Run()
+	err := updateCmd.Run()
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -31,8 +28,8 @@ func CmdUpdate() error {
 		return err
 	}
 	cfg.Git.SHA = newSHA
-	config.UpdateConfigSHA(cfg)
-	fmt.Println("Update Succesful. You are ready to owo :)")
+	config.UpdateConfig(cfg)
+	fmt.Println("Update Successful. You are ready to owo :)")
 
 	return nil
 }
