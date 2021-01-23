@@ -56,6 +56,7 @@ var (
 )
 
 func checkKeyword(line string) *string {
+	line += "      " // Casual hacky pad
 	if line[0:5] == title+":" {
 		return &title
 	} else if line[0:7] == command+":" {
