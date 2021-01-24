@@ -20,14 +20,14 @@ type Config struct {
 }
 
 // ParseConfig parses the config file
-func ParseConfig() (*Config, error) {
+func ParseConfig(filename string) (*Config, error) {
 
 	gopath := os.Getenv("GOPATH")
 	if gopath == "" {
 		gopath = build.Default.GOPATH
 	}
 
-	gopath += "/src/github.com/LinkdxTTV/owo/config/config.json"
+	gopath += "/src/github.com/LinkdxTTV/owo/config/" + filename
 	// fmt.Println(gopath)
 
 	f, err := os.Open(gopath)

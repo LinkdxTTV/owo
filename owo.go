@@ -14,9 +14,12 @@ import (
 func main() {
 	args := os.Args
 
-	cfg, err := config.ParseConfig()
+	cfg, err := config.ParseConfig("config.json")
 	if err != nil {
-		log.Fatal(err)
+		cfg, err = config.ParseConfig("default.json")
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 	if !cfg.Initialized {
 		cfg = commands.FirstTimeSetup(cfg)
