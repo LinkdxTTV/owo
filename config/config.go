@@ -13,8 +13,8 @@ type Config struct {
 		RemoteURL string `json:"remoteURL"`
 		SSHURL    string `json:"SSHURL"`
 		SHA       string `json:"sha"`
-		LocalPath string `json:"localpath"`
 	} `json:"git"`
+	LocalPath string `json:"localpath"`
 }
 
 // ParseConfig parses the config file

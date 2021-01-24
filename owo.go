@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"go/build"
 	"log"
 	"os"
 
@@ -16,7 +15,7 @@ func main() {
 	// fmt.Println(args)
 
 	if len(args) == 1 {
-		fmt.Println("owo: command line knowledge source 5")
+		fmt.Println("owo: command line knowledge source 1")
 		fmt.Println("--------------------------------")
 		fmt.Println("  owo about")
 		fmt.Println("  owo checkup")
@@ -48,13 +47,8 @@ func main() {
 			log.Fatal(err)
 		}
 	case "test":
-		gopath := os.Getenv("GOPATH")
-		if gopath == "" {
-			gopath = build.Default.GOPATH
-		}
 
-		gopath += "/src/github.com/LinkdxTTV/owo/docs/text/testfile"
-		entry, err := parse.ParseEntry(gopath)
+		entry, err := parse.ParseEntry(cfg.LocalPath + "/docs/text/testfile")
 		if err != nil {
 			log.Fatal(err)
 		}
