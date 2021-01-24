@@ -19,10 +19,20 @@ func main() {
 		log.Fatal(err)
 	}
 
+	if !cfg.Initialized {
+		cfg = commands.FirstTimeSetup(cfg)
+		fmt.Println(cfg)
+		err := config.UpdateConfig(cfg)
+		if err != nil {
+			log.Fatal(err)
+		}
+		os.Exit(0)
+	}
+
 	if len(args) == 1 {
 		fmt.Println("owo: command line knowledge source 1")
 		fmt.Println("------------------------------------")
-		fmt.Println("  owo -about || -checkup || -update \n")
+		fmt.Println("  owo -help || -about || -checkup || -update || -config\n")
 		parse.NavigateAndShowDir(cfg.LocalPath+"/docs/docs", cfg)
 		os.Exit(0)
 	}
@@ -46,15 +56,13 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-		// case "test":
-
-		// 	entry, err := parse.ParseEntry(cfg.LocalPath + "/docs/text/testfile")
-		// 	if err != nil {
-		// 		log.Fatal(err)
-		// 	}
-		// 	entry.Print()
-		// case "nav":
-		// 	parse.NavigateAndShow([]string{"testfile"}, cfg)
+		case commands.Config:
+			err := commands.CmdConfig(cfg)
+			if err != nil {
+				log.Fatal(err)
+			}
+		case commands.Help:
+			commands.CmdHelp()
 		default:
 			fmt.Println("command", args[1], "not recognized")
 		}

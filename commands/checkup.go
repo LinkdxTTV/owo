@@ -25,7 +25,7 @@ func CheckForUpdate(cfg *config.Config) (bool, error) {
 }
 
 func getNewestSHA(cfg *config.Config) (string, error) {
-	gitCmd := exec.Command("git", "ls-remote", cfg.Git.SSHURL)
+	gitCmd := exec.Command("git", "ls-remote", "http://"+cfg.Git.RemoteURL)
 
 	outBytes, err := gitCmd.Output()
 	if err != nil {

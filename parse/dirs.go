@@ -41,9 +41,10 @@ func NavigateAndShowDir(path string, cfg *config.Config) error {
 	}
 
 	dir := strings.Split(path, "/")
+	fmt.Println("dir", dir)
 
 	folder := docs.Folder{
-		Name:       dir[len(dir)-1],
+		Path:       dir[9:],
 		Entries:    []string{},
 		SubFolders: []string{},
 	}

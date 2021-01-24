@@ -36,14 +36,14 @@ func (e Entry) Print() {
 }
 
 type Folder struct {
-	Name       string
+	Path       []string
 	Entries    []string
 	SubFolders []string
 	Meta       string // Meta gets displayed above the folder contents
 }
 
 func (f Folder) Print() {
-	fmt.Println(f.Name + " {")
+	fmt.Println(f.Path)
 	if f.Meta != "" {
 		fmt.Println("          " + f.Meta)
 	}

@@ -11,10 +11,12 @@ import (
 type Config struct {
 	Git struct {
 		RemoteURL string `json:"remoteURL"`
-		SSHURL    string `json:"SSHURL"`
 		SHA       string `json:"sha"`
 	} `json:"git"`
-	LocalPath string `json:"localpath"`
+	LocalPath       string `json:"localpath"`
+	Initialized     bool   `json:"initialized"`
+	UnpushedChanges int    `json:"UnpushedChanges"`
+	PreferredEditor string `json:"PreferredEditor"`
 }
 
 // ParseConfig parses the config file
