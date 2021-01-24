@@ -19,7 +19,6 @@ func NavigateAndShow(argPath []string, cfg *config.Config) error {
 	// Try to see if its a file
 	entry, err := ParseEntry(fullpath)
 	if err != nil {
-		fmt.Println(err.Error())
 		if strings.Contains(err.Error(), "is a directory") { // SUPER HACKY NO SHAME PLS
 			NavigateAndShowDir(fullpath, cfg)
 		} else if strings.Contains(err.Error(), "no such") {

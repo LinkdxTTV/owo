@@ -55,7 +55,7 @@ func (f Folder) Print() {
 
 	if len(f.SubFolders) != 0 {
 		for _, folder := range f.SubFolders {
-			fmt.Println("  " + folder + " ...")
+			fmt.Println("  [" + folder + "]")
 		}
 	}
 	if len(f.Entries) != 0 {
