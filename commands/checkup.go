@@ -8,7 +8,7 @@ import (
 	"github.com/LinkdxTTV/owo/config"
 )
 
-const Checkup string = "checkup"
+const Checkup string = "-checkup"
 
 // CheckForUpdate checks for updates
 func CheckForUpdate(cfg *config.Config) (bool, error) {

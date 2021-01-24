@@ -2,7 +2,7 @@ package commands
 
 import "fmt"
 
-const About = "about"
+const About = "-about"
 
 func ShowAbout() {
 	fmt.Println(`
@@ -10,10 +10,9 @@ func ShowAbout() {
    ██    ██ ██     ██ ██    ██ 
    ██    ██ ██  █  ██ ██    ██
    ██    ██ ██ ███ ██ ██    ██ 
-    ██████   ███ ███   ██████  
-
-	                 whats this?              
+    ██████   ███ ███   ██████    
    `)
+	fmt.Println("\033[1m                         whats this? \033[0m")
 
 	fmt.Println("  motivation:")
 	fmt.Println("owo was born out of frustration at using the confluence web wiki. It is very hard to quickly access the information I want, and editing the info with new info is a huge pain. For instance, I want to ensure that the health endpoint of one of my services is responding correctly, but I dont remember the port. Should I open the repo and look it up? Oh, I can just check which ports are listening on this host, but what was that command again? What about the command to restart the service as managed by daemon tools? Is it on the wiki? I normally have tons of terminals open so this seemed like a good compromise. Similarly, I wanted some exercise in writing a command line interface handling all the operations myself, including io and code generation. As a result, owo has no external dependencies and only requires go and git be installed. Finally, owo is called owo because memes control everything around me UwU")

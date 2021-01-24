@@ -29,25 +29,30 @@ func (e Entry) Print() {
 
 type Folder struct {
 	Name       string
-	Entries    []Entry
-	SubFolders []Folder
+	Entries    []string
+	SubFolders []string
 	Meta       string // Meta gets displayed above the folder contents
 }
 
 func (f Folder) Print() {
-	fmt.Println(f.Name + "{")
-	fmt.Println("   " + f.Meta)
-	fmt.Println()
+	fmt.Println(f.Name + " {")
+	if f.Meta != "" {
+		fmt.Println("          " + f.Meta)
+	}
+
+	if len(f.SubFolders) == 0 && len(f.Entries) == 0 {
+		fmt.Println("  folder is empty")
+		return
+	}
+
 	if len(f.SubFolders) != 0 {
-		fmt.Println("   Folders:")
 		for _, folder := range f.SubFolders {
-			fmt.Println("     " + folder.Name)
+			fmt.Println("  " + folder + " ...")
 		}
 	}
 	if len(f.Entries) != 0 {
-		fmt.Println("   Entries:")
 		for _, entry := range f.Entries {
-			fmt.Println("     " + entry.Title)
+			fmt.Println("  " + entry)
 		}
 	}
 }
