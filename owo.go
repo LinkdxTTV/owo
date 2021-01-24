@@ -18,7 +18,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if !cfg.Initialized {
 		cfg = commands.FirstTimeSetup(cfg)
 		fmt.Println(cfg)
