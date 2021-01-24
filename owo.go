@@ -14,18 +14,17 @@ import (
 func main() {
 	args := os.Args
 
-	if len(args) == 1 {
-		fmt.Println("owo: command line knowledge source 1")
-		fmt.Println("------------------------------------")
-		fmt.Println("  owo -about")
-		fmt.Println("  owo -checkup")
-		fmt.Println("  owo -update")
-		os.Exit(0)
-	}
-
 	cfg, err := config.ParseConfig()
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if len(args) == 1 {
+		fmt.Println("owo: command line knowledge source 1")
+		fmt.Println("------------------------------------")
+		fmt.Println("  owo -about || -checkup || -update \n")
+		parse.NavigateAndShowDir(cfg.LocalPath+"/docs/docs", cfg)
+		os.Exit(0)
 	}
 
 	if strings.Contains(args[1], "-") { // Command
