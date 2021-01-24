@@ -23,7 +23,6 @@ func main() {
 	}
 	if !cfg.Initialized {
 		cfg = commands.FirstTimeSetup(cfg)
-		fmt.Println(cfg)
 		err := config.UpdateConfig(cfg)
 		if err != nil {
 			log.Fatal(err)
