@@ -31,7 +31,15 @@ func main() {
 
 	switch args[1] {
 	case commands.Checkup:
-		commands.CheckForUpdate(cfg)
+		needsUpdate, err := commands.CheckForUpdate(cfg)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if !needsUpdate {
+			fmt.Println("owo you're up to date :)")
+		} else {
+			fmt.Println("Please run: owo update")
+		}
 	case commands.About:
 		commands.ShowAbout()
 	case commands.Update:
@@ -51,6 +59,8 @@ func main() {
 			log.Fatal(err)
 		}
 		entry.Print()
+	default:
+		fmt.Println("command", args[1], "not recognized")
 	}
 
 	return

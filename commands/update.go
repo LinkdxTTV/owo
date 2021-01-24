@@ -12,12 +12,22 @@ const Update string = "update"
 
 func CmdUpdate(cfg *config.Config) error {
 
+	needsUpdate, err := CheckForUpdate(cfg)
+	if err != nil {
+		return err
+	}
+
+	if !needsUpdate {
+		fmt.Println("owo you are already up to date :)")
+		return nil
+	}
+
 	os.Setenv("GO111MODULE", "off")
 	updateCmd := exec.Command("go", "get", "-u", cfg.Git.RemoteURL)
 	updateCmd.Stdout = os.Stdout
 	updateCmd.Stderr = os.Stdout
 
-	err := updateCmd.Run()
+	err = updateCmd.Run()
 	if err != nil {
 		fmt.Println(err)
 		return err

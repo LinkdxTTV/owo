@@ -11,22 +11,17 @@ import (
 const Checkup string = "checkup"
 
 // CheckForUpdate checks for updates
-func CheckForUpdate(cfg *config.Config) error {
+func CheckForUpdate(cfg *config.Config) (bool, error) {
 
 	headSHA, err := getNewestSHA(cfg)
 	if err != nil {
-		return err
+		return false, err
 	}
 
 	fmt.Println("Current build: ", cfg.Git.SHA)
 	fmt.Println("Remote  build: ", headSHA)
 
-	if headSHA == cfg.Git.SHA {
-		fmt.Println("owo you're up to date :)")
-	} else {
-		fmt.Println("Please run: owo update")
-	}
-	return nil
+	return headSHA != cfg.Git.SHA, nil
 }
 
 func getNewestSHA(cfg *config.Config) (string, error) {
