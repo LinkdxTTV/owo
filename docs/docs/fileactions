@@ -1,0 +1,22 @@
+Title: owo fileactions
+
+BodyStart:
+usage:
+  owo {path to a directory} {action} {filename}
+
+owo fileactions:
+  owo -[t]ouch or -[n]ew        | create a new file and open/edit it
+  owo -[e]dit                   | edit a file
+  owo -[d]elete or -[r]e[m]ove  | delete a file
+  owo -dir or -mkdir            | create a directory
+
+owo currently does not support deletion of directories
+
+example: 
+  owo actions -e touch
+  will open the file /actions/touch in your preferred editor
+  
+a folder has been included that documents all the fileactions that owo can do
+try: owo actions
+BodyEnd:
+
