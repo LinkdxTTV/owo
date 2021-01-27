@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"strings"
@@ -54,5 +55,8 @@ func sync(cfg *config.Config) error {
 	if err != nil {
 		return err
 	}
+
+	fmt.Println("Changed synced succesfully: Check it out at: ")
+	fmt.Println("https://" + cfg.Git.RemoteURL + "/pulls")
 	return nil
 }
