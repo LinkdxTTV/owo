@@ -13,6 +13,7 @@ import (
 func main() {
 	args := os.Args
 
+	// Config
 	cfg, err := config.ParseConfig("config.json")
 	if err != nil {
 		cfg, err = config.ParseConfig("default.json")
@@ -20,6 +21,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	// First time?
 	if !cfg.Initialized {
 		cfg = commands.FirstTimeSetup(cfg)
 		err := config.UpdateConfig(cfg)
@@ -29,19 +31,23 @@ func main() {
 		os.Exit(0)
 	}
 
+	// No args
 	if len(args) == 1 {
-		fmt.Println("owo: command line knowledge source")
-		fmt.Println("----------------------------------")
-		fmt.Println("  owo -[h]elp || -[a]bout || -[ch]eckup || -[u]pdate || -[c]onfig")
-		fmt.Println()
-		parse.NavigateAndShowDir(cfg.LocalPath+"/docs/docs", cfg)
+		showBaseMessage(cfg)
 		os.Exit(0)
 	}
 
+	// Commands and filestructure
 	if commands.IsBaseCommand(args) { // Base Command
-		commands.HandleBaseCommand(cfg, args)
+		err = commands.HandleBaseCommand(cfg, args)
+		if err != nil {
+			log.Fatal(err)
+		}
 	} else if commands.IsFileCommand(args) {
-		commands.HandleFileCommands(cfg, args)
+		err = commands.HandleFileCommands(cfg, args)
+		if err != nil {
+			log.Fatal(err)
+		}
 	} else {
 		// Likely a directory or whatnot
 		err := parse.NavigateAndShow(args[1:], cfg)
@@ -51,4 +57,12 @@ func main() {
 		}
 	}
 	return
+}
+
+func showBaseMessage(cfg *config.Config) {
+	fmt.Println("owo: command line knowledge source")
+	fmt.Println("----------------------------------")
+	fmt.Println("  owo -[h]elp || -[a]bout || -[ch]eckup || -[u]pdate || -[c]onfig")
+	fmt.Println()
+	parse.NavigateAndShowDir(cfg.LocalPath+"/docs/docs", cfg)
 }

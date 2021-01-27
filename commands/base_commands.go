@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/LinkdxTTV/owo/config"
@@ -31,13 +30,13 @@ func IsBaseCommand(args []string) bool {
 	return string(args[1][0]) == "-"
 }
 
-func HandleBaseCommand(cfg *config.Config, args []string) {
+func HandleBaseCommand(cfg *config.Config, args []string) error {
 	command := sanitizeCommand(args[1])
 	switch command {
 	case Checkup, CheckupShort:
 		needsUpdate, err := CmdCheckup(cfg)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		if !needsUpdate {
 			fmt.Println("owo you're up to date :)")
@@ -49,16 +48,22 @@ func HandleBaseCommand(cfg *config.Config, args []string) {
 	case Update, UpdateShort:
 		err := CmdUpdate(cfg)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 	case Config, ConfigShort:
 		err := CmdConfig(cfg)
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 	case Help, HelpShort:
 		CmdHelp()
+	case Sync, SyncShort:
+		err := sync(cfg)
+		if err != nil {
+			return err
+		}
 	default:
 		fmt.Println("command", args[1], "not recognized. Perhaps you need owo -help ?")
 	}
+	return nil
 }
