@@ -16,7 +16,7 @@ const (
 	Diff string = "diff"
 )
 
-func CheckDiff(cfg *config.Config) error {
+func DeferDiffCheck(cfg *config.Config) error {
 	currentDir, err := os.Getwd()
 	if err != nil {
 		return err
@@ -27,6 +27,7 @@ func CheckDiff(cfg *config.Config) error {
 		return err
 	}
 
+	// Inside Go pipe shenanigans
 	c1 := exec.Command("git", "status", "--short")
 	c2 := exec.Command("wc", "-l")
 
@@ -68,7 +69,28 @@ func CheckDiff(cfg *config.Config) error {
 		return nil
 	}
 	fmt.Println()
-	fmt.Println("You have", numFilesChanged, "unsynced change(s). Perhaps you want to owo -sync or owo -reset ?")
+	fmt.Println("You have", numFilesChanged, "unsynced change(s). Perhaps you want to owo -[s]ync or owo -[r]eset?")
 
+	return nil
+}
+
+func checkDiff(cfg *config.Config) error {
+	currentDir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	defer os.Chdir(currentDir)
+	err = os.Chdir(cfg.LocalPath + "/docs/docs")
+	if err != nil {
+		return err
+	}
+
+	cmd := exec.Command("git", "status", "--short")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err = cmd.Run()
+	if err != nil {
+		return err
+	}
 	return nil
 }

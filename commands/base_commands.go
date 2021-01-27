@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/LinkdxTTV/owo/config"
@@ -62,6 +63,19 @@ func HandleBaseCommand(cfg *config.Config, args []string) error {
 		if err != nil {
 			return err
 		}
+		os.Exit(0) // Wont run defer
+	case Reset, ResetShort:
+		err := reset(cfg)
+		if err != nil {
+			return err
+		}
+		os.Exit(0) // Wont run defer
+	case Diff:
+		err := checkDiff(cfg)
+		if err != nil {
+			return err
+		}
+		os.Exit(0) // Wont run defer
 	default:
 		fmt.Println("command", args[1], "not recognized. Perhaps you need owo -help ?")
 	}

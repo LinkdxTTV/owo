@@ -31,6 +31,7 @@ func main() {
 		os.Exit(0)
 	}
 
+	defer commands.DeferDiffCheck(cfg)
 	// No args
 	if len(args) == 1 {
 		showBaseMessage(cfg)
