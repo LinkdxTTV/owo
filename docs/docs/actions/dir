@@ -12,3 +12,6 @@ BodyEnd:
 
 Notes:
 also made in owo hehe
+directory names should not start with -
+directory names should not have spaces in them
+this is easy to break. i know. its hacky
