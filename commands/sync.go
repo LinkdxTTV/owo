@@ -37,7 +37,7 @@ func sync(cfg *config.Config) error {
 	}
 	name := strings.Split(string(outName), " ")[0]
 	time := time.Now()
-	branchName := name + "/" + time.Format("01-02-2006")
+	branchName := "owo" + "/" + name + "/" + time.Format("01-02-2006")
 
 	err = exec.Command("git", "checkout", "-b", branchName).Run()
 	defer exec.Command("git", "checkout", "-b", "main").Run()
