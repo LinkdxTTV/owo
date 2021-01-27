@@ -55,7 +55,7 @@ func createNewFile(cfg *config.Config, args []string) error {
 		return err
 	}
 	fmt.Println(filename, "created succesfully")
-	// Auto open the editor
+
 	return nil
 }
 

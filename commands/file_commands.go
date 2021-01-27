@@ -37,6 +37,11 @@ func HandleFileCommands(cfg *config.Config, args []string) error {
 		if err != nil {
 			return err
 		}
+		// Then edit it
+		err = editFile(cfg, args)
+		if err != nil {
+			return err
+		}
 	case Delete, DeleteShort, Remove, RemoveShort:
 		err := deleteFile(cfg, args)
 		if err != nil {
