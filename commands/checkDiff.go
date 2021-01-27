@@ -69,7 +69,7 @@ func DeferDiffCheck(cfg *config.Config) error {
 		return nil
 	}
 	fmt.Println()
-	fmt.Println("You have", numFilesChanged, "unsynced change(s). Perhaps you want to owo -[s]ync or owo -[r]eset?")
+	fmt.Println("You have", numFilesChanged, "unsynced change(s). owo -diff to see. Perhaps you want to owo -[s]ync or owo -[r]eset?")
 
 	return nil
 }
