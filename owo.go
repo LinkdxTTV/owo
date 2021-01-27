@@ -34,7 +34,7 @@ func main() {
 	// No args
 	if len(args) == 1 {
 		showBaseMessage(cfg)
-		os.Exit(0)
+		return
 	}
 
 	// Commands and filestructure
