@@ -52,6 +52,11 @@ func HandleFileCommands(cfg *config.Config, args []string) error {
 		if err != nil {
 			return err
 		}
+	case Directory, DirectoryUnix:
+		err := createNewDirectory(cfg, args)
+		if err != nil {
+			return err
+		}
 	default:
 		fmt.Println("Unrecognized file command: ", command)
 	}
