@@ -5,6 +5,7 @@ Command:
 
 BodyStart:
     opens a file in your preferred editor as configured by owo -config
+    simply save and exit. later run owo -sync to upstream changes.
 
     example usage: This command will open this file
         owo actions -e edit
