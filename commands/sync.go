@@ -41,7 +41,7 @@ func sync(cfg *config.Config) error {
 	branchName := "owo" + "/" + name + "/" + time.Format("01-02-2006")
 
 	err = exec.Command("git", "checkout", "-b", branchName).Run()
-	defer exec.Command("git", "checkout", "-b", "main").Run()
+	defer exec.Command("git", "checkout", "main").Run()
 
 	err = exec.Command("git", "add", "./docs/docs").Run()
 	if err != nil {
