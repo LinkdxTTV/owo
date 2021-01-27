@@ -45,7 +45,12 @@ func createNewFile(cfg *config.Config, args []string) error {
 		}
 	}
 	// Ok lets create it
-	err = ioutil.WriteFile(fullPathFile, []byte(newFileTemplate), 0644)
+	filecontents := []byte{}
+	if filename != "meta" {
+		filecontents = []byte(newFileTemplate)
+	}
+
+	err = ioutil.WriteFile(fullPathFile, filecontents, 0644)
 	if err != nil {
 		return err
 	}
