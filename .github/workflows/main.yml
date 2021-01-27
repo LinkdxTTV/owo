@@ -1,7 +1,7 @@
+name: owoPR
 on:
   push:
     branches:
-    - "owo/*"
 
 jobs:
   pull-request:
@@ -11,5 +11,6 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
+        pr+title: "owo Automatic Document Update PR"
         destination_branch: "main"
         github_token: ${{ secrets.GITHUB_TOKEN }}
