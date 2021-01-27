@@ -2,9 +2,9 @@ package commands
 
 import "fmt"
 
-const About = "-about"
+const About = "about"
 
-func ShowAbout() {
+func CmdAbout() {
 	fmt.Println(`
     ██████  ██     ██  ██████  
    ██    ██ ██     ██ ██    ██ 

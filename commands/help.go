@@ -2,7 +2,7 @@ package commands
 
 import "fmt"
 
-const Help = "-help"
+const Help = "help"
 
 func CmdHelp() {
 

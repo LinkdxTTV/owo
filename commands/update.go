@@ -8,11 +8,11 @@ import (
 	"github.com/LinkdxTTV/owo/config"
 )
 
-const Update string = "-update"
+const Update string = "update"
 
 func CmdUpdate(cfg *config.Config) error {
 
-	needsUpdate, err := CheckForUpdate(cfg)
+	needsUpdate, err := CmdCheckup(cfg)
 	if err != nil {
 		return err
 	}

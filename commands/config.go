@@ -11,7 +11,7 @@ import (
 	"github.com/LinkdxTTV/owo/config"
 )
 
-const Config string = "-config"
+const Config string = "config"
 
 func CmdConfig(cfg *config.Config) error {
 	cfg = FirstTimeSetup(cfg)
