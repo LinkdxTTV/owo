@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/LinkdxTTV/owo/config"
@@ -11,13 +12,11 @@ import (
 )
 
 const (
-	Delete      string = "delete"
-	DeleteShort string = "d"
-	Remove      string = "remove"
-	RemoveShort string = "rm"
+	Edit      string = "edit"
+	EditShort string = "e"
 )
 
-func deleteFile(cfg *config.Config, args []string) error {
+func editFile(cfg *config.Config, args []string) error {
 	// Ensure syntax is correct
 	basePath := cfg.LocalPath + "/docs/docs"
 	args = args[1:] // Remove "owo"
@@ -38,7 +37,7 @@ func deleteFile(cfg *config.Config, args []string) error {
 	// Check if its a directory
 	if err != nil {
 		if strings.Contains(err.Error(), "is a directory") {
-			fmt.Println("Error: Cannot use", filename, "as it is a directory")
+			fmt.Println("Error: Cannot edit", filename, "as it is a directory")
 		}
 		if strings.Contains(err.Error(), "no such") {
 			fmt.Println("Error: No such file", filename, "exists. Showing directory:")
@@ -46,21 +45,19 @@ func deleteFile(cfg *config.Config, args []string) error {
 		}
 		return nil
 	}
-	// Ok lets delete it
+	// Ok lets edit it
 
-	err = os.Remove(fullPathFile)
+	editCmd := exec.Command(cfg.PreferredEditor, fullPathFile)
+	editCmd.Stdout = os.Stdout
+	editCmd.Stderr = os.Stdout
+	editCmd.Stdin = os.Stdin
 
+	err = editCmd.Run()
 	if err != nil {
 		return err
 	}
-	fmt.Println(filename, "deleted succesfully")
+
+	fmt.Println("editing file", filename, "in preferred editor:", cfg.PreferredEditor)
 
 	return nil
-}
-
-func showDeleteHelp() {
-	fmt.Println("Error: command syntax not recognized")
-	fmt.Println()
-	fmt.Println("-delete or -remove expects a folder path before it, and a file name after it")
-	fmt.Println("  example: owo directory1 subdirectory2 -delete newFileName")
 }

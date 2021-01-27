@@ -42,6 +42,11 @@ func HandleFileCommands(cfg *config.Config, args []string) error {
 		if err != nil {
 			return err
 		}
+	case Edit, EditShort:
+		err := editFile(cfg, args)
+		if err != nil {
+			return err
+		}
 	default:
 		fmt.Println("Unrecognized file command: ", command)
 	}
