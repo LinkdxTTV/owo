@@ -1,0 +1,14 @@
+Title: delete / remove
+
+Command:
+    owo -delete filename || owo -d filename || owo -remove filename || owo -rm filename
+
+BodyStart:
+    deletes a file
+
+    example usage: NOTE this example will delete THIS file!
+    owo actions -d delete
+BodyEnd:
+
+Notes:
+this documentation was written from within owo :)

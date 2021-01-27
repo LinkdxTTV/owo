@@ -1,0 +1,14 @@
+Title: dir or mkdir
+
+Command: owo -dir directoryName || owo -mkdir directoryName
+
+BodyStart:
+    creates a new empty directory at location
+
+    example usage: (will make a folder in actions called subactions)
+        owo actions -mkdir subactions
+
+BodyEnd:
+
+Notes:
+also made in owo hehe

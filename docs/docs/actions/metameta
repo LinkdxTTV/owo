@@ -1,0 +1,15 @@
+Title: meta
+
+Command: owo FOLDER -t meta
+
+BodyStart:
+
+every folder can optionally contain a "meta" file which will show information about that folder when a user views that folder
+
+this folder's meta can be accessed via
+    owo actions -e meta
+
+BodyEnd:
+
+Notes:
+what is metadata about metadata called?

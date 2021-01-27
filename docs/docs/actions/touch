@@ -1,0 +1,13 @@
+Title: touch / new
+
+Command: owo -touch filename || owo -new filename || owo -t filename || owo -n ||filename
+
+BodyStart:
+creates a plaintext file at folder
+
+example usage:
+owo actions -t sampleFileInThisFolder
+BodyEnd:
+
+Notes:
+this documentation was created with owo :)
