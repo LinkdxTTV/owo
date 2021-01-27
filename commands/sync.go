@@ -17,6 +17,15 @@ const (
 
 func sync(cfg *config.Config) error {
 
+	diffFiles, err := numDiff(cfg)
+	if err != nil {
+		return err
+	}
+	if diffFiles == 0 {
+		fmt.Println("No changes detected. Nothing to sync owo")
+		return nil
+	}
+
 	currentDir, err := os.Getwd()
 	if err != nil {
 		return err
@@ -38,7 +47,7 @@ func sync(cfg *config.Config) error {
 	}
 	name := strings.Split(string(outName), " ")[0]
 	time := time.Now()
-	branchName := "owo" + "/" + name + "/" + time.Format("01-02-2006")
+	branchName := "owo" + "/" + name + "/" + time.Format("2006-01-02/15.04.05")
 
 	err = exec.Command("git", "checkout", "-b", branchName).Run()
 	defer exec.Command("git", "checkout", "main").Run()

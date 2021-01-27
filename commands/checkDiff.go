@@ -17,14 +17,28 @@ const (
 )
 
 func DeferDiffCheck(cfg *config.Config) error {
-	currentDir, err := os.Getwd()
+	numFilesChanged, err := numDiff(cfg)
 	if err != nil {
 		return err
+	}
+	if numFilesChanged == 0 {
+		return nil
+	}
+	fmt.Println()
+	fmt.Println("You have", numFilesChanged, "unsynced change(s). owo -diff to see. Perhaps you want to owo -[s]ync or owo -[r]eset?")
+
+	return nil
+}
+
+func numDiff(cfg *config.Config) (int, error) {
+	currentDir, err := os.Getwd()
+	if err != nil {
+		return 0, err
 	}
 	defer os.Chdir(currentDir)
 	err = os.Chdir(cfg.LocalPath)
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	// Inside Go pipe shenanigans
@@ -40,38 +54,31 @@ func DeferDiffCheck(cfg *config.Config) error {
 
 	err = c1.Start()
 	if err != nil {
-		return err
+		return 0, err
 	}
 	err = c2.Start()
 	if err != nil {
-		return err
+		return 0, err
 	}
 	err = c1.Wait()
 	if err != nil {
-		return err
+		return 0, err
 	}
 	err = w.Close()
 	if err != nil {
-		return err
+		return 0, err
 	}
 	err = c2.Wait()
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	filesChanged := strings.TrimSpace(string(b2.Bytes()))
 	numFilesChanged, err := strconv.Atoi(filesChanged)
 	if err != nil {
-		return err
+		return 0, err
 	}
-
-	if numFilesChanged == 0 {
-		return nil
-	}
-	fmt.Println()
-	fmt.Println("You have", numFilesChanged, "unsynced change(s). owo -diff to see. Perhaps you want to owo -[s]ync or owo -[r]eset?")
-
-	return nil
+	return numFilesChanged, nil
 }
 
 func checkDiff(cfg *config.Config) error {
