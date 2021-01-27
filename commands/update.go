@@ -8,7 +8,10 @@ import (
 	"github.com/LinkdxTTV/owo/config"
 )
 
-const Update string = "update"
+const (
+	Update      string = "update"
+	UpdateShort string = "u"
+)
 
 func CmdUpdate(cfg *config.Config) error {
 

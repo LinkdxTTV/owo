@@ -2,7 +2,10 @@ package commands
 
 import "fmt"
 
-const About = "about"
+const (
+	About      = "about"
+	AboutShort = "a"
+)
 
 func CmdAbout() {
 	fmt.Println(`

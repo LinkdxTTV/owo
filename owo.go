@@ -31,14 +31,17 @@ func main() {
 
 	if len(args) == 1 {
 		fmt.Println("owo: command line knowledge source")
-		fmt.Println("------------------------------------")
-		fmt.Println("  owo -help || -about || -checkup || -update || -config\n")
+		fmt.Println("----------------------------------")
+		fmt.Println("  owo -[h]elp || -[a]bout || -[ch]eckup || -[u]pdate || -[c]onfig")
+		fmt.Println()
 		parse.NavigateAndShowDir(cfg.LocalPath+"/docs/docs", cfg)
 		os.Exit(0)
 	}
 
-	if string(args[1][0]) == "-" { // Base Command
-		commands.HandleCommand(cfg, commands.SanitizeCommand(args[1]))
+	if commands.IsBaseCommand(args) { // Base Command
+		commands.HandleBaseCommand(cfg, args)
+	} else if commands.IsFileCommand(args) {
+		commands.HandleFileCommands(cfg, args)
 	} else {
 		// Likely a directory or whatnot
 		err := parse.NavigateAndShow(args[1:], cfg)

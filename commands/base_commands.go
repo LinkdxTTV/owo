@@ -8,7 +8,7 @@ import (
 	"github.com/LinkdxTTV/owo/config"
 )
 
-func SanitizeCommand(command string) string {
+func sanitizeCommand(command string) string {
 	// Get rid of weird capitals
 	command = strings.ToLower(command)
 	// Allow one or two dashes
@@ -24,9 +24,17 @@ func SanitizeCommand(command string) string {
 	return command
 }
 
-func HandleCommand(cfg *config.Config, command string) {
-	switch SanitizeCommand(command) {
-	case Checkup:
+func IsBaseCommand(args []string) bool {
+	if len(args) != 2 {
+		return false
+	}
+	return string(args[1][0]) == "-"
+}
+
+func HandleBaseCommand(cfg *config.Config, args []string) {
+	command := sanitizeCommand(args[1])
+	switch command {
+	case Checkup, CheckupShort:
 		needsUpdate, err := CmdCheckup(cfg)
 		if err != nil {
 			log.Fatal(err)
@@ -36,21 +44,21 @@ func HandleCommand(cfg *config.Config, command string) {
 		} else {
 			fmt.Println("Please run: owo -update")
 		}
-	case About:
+	case About, AboutShort:
 		CmdAbout()
-	case Update:
+	case Update, UpdateShort:
 		err := CmdUpdate(cfg)
 		if err != nil {
 			log.Fatal(err)
 		}
-	case Config:
+	case Config, ConfigShort:
 		err := CmdConfig(cfg)
 		if err != nil {
 			log.Fatal(err)
 		}
-	case Help:
+	case Help, HelpShort:
 		CmdHelp()
 	default:
-		fmt.Println("command", command, "not recognized")
+		fmt.Println("command", args[1], "not recognized. Perhaps you need owo -help ?")
 	}
 }
