@@ -1,8 +1,8 @@
 name: owoPR
 on:
   push:
-    branches:
-      - "owo/*"
+    branches-ignore: 
+      - main
 jobs:
   pull-request:
     runs-on: ubuntu-latest
